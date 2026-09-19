@@ -1,0 +1,18 @@
+# Dependencias
+node_modules/
+
+# Configuración y credenciales (¡Súper importante!)
+.env
+.env.local
+
+# Logs de errores
+*.log
+npm-debug.log*
+
+# Carpetas de compilación (si usas TypeScript o Babel)
+dist/
+build/
+
+# Archivos del sistema u editores
+.DS_Store
+.vscode/

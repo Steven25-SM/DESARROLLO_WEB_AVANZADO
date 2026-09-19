@@ -1,0 +1,138 @@
+{
+  "tickets": [],
+  "notifications": [
+    {
+      "id": "097f56a7-1526-4b59-bab9-b4ea6c3a659e",
+      "type": "email",
+      "message": "Nuevo ticket creado: Problema 1",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    },
+    {
+      "id": "0c92642b-0eab-4964-9f06-e2be1128021a",
+      "type": "email",
+      "message": "El ticket 0ca5af7d-8fcb-41b7-b393-442f727b4028 fue asignado a Steven",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    },
+    {
+      "id": "8ea21e26-28a9-4969-9786-9377a56cb684",
+      "type": "push",
+      "message": "El ticket 0ca5af7d-8fcb-41b7-b393-442f727b4028 cambió a asignado",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    },
+    {
+      "id": "f2d8f356-1f1f-4c59-aa64-80460e720164",
+      "type": "email",
+      "message": "Hola profesor, notificación de prueba enviada con éxito desde la API de Steve Saldaña",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    },
+    {
+      "id": "91b773a2-ab0c-4713-a7cc-8767310758c7",
+      "type": "email",
+      "message": "Hola profesor, notificación de prueba enviada con éxito desde la API de Steve Saldaña",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    },
+    {
+      "id": "59534332-5a35-465b-a52e-536e7584a63a",
+      "type": "email",
+      "message": "Hola profesor, notificación de prueba enviada con éxito desde la API de Steve Saldaña",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    },
+    {
+      "id": "1019e8ef-894e-4d37-aedb-b47f4bfedba7",
+      "type": "email",
+      "message": "Hola profesor, notificación de prueba enviada con éxito desde la API de Steve Saldaña",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    },
+    {
+      "id": "5bbcdc0f-7039-4385-9cba-e765d23333a9",
+      "type": "email",
+      "message": "Hola profesor, notificación de prueba enviada con éxito desde la API de Steve Saldaña",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    },
+    {
+      "id": "1f0e6dce-6afe-49aa-ad5c-32d191adf146",
+      "type": "email",
+      "message": "Hola profesor, notificación de prueba enviada con éxito desde la API de Steve Saldaña",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    },
+    {
+      "id": "b588d831-2f82-464d-ad1f-be0bb4db4db6",
+      "type": "email",
+      "message": "Hola profesor, notificación de prueba enviada con éxito desde la API de Steve Saldaña",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    },
+    {
+      "id": "6e4a8d79-4a46-42da-820e-b48c78f4147a",
+      "type": "email",
+      "message": "Hola profesor, notificación de prueba enviada con éxito desde la API de Steve Saldaña",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    },
+    {
+      "id": "45f6296d-b704-4c03-a902-733209aa2e7c",
+      "type": "email",
+      "message": "Hola profesor, notificación de prueba enviada con éxito desde la API de Steve Saldaña",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    },
+    {
+      "id": "742bd9dd-402c-4128-836b-eb7b5a2afb7e",
+      "type": "email",
+      "message": "Hola profesor, notificación de prueba enviada con éxito desde la API de Steve Saldaña",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    },
+    {
+      "id": "6570a983-f7a7-403e-8f00-60ff642ea618",
+      "type": "email",
+      "message": "Hola profesor, notificación de prueba enviada con éxito desde la API de Steve Saldaña",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    },
+    {
+      "id": "a73ecd97-09f9-46f7-b259-91d5493be520",
+      "type": "email",
+      "message": "Hola profesor, notificación de prueba enviada con éxito desde la API de Steve Saldaña",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    },
+    {
+      "id": "272109f6-08f8-43fd-968b-8bd0a3ab6ae1",
+      "type": "email",
+      "message": "Hola profesor, notificación de prueba enviada con éxito desde la API de Steve Saldaña",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    },
+    {
+      "id": "f0f77fc2-6189-4ac8-8442-1899c4194cd9",
+      "type": "email",
+      "message": "Hola profesor, notificación de prueba enviada con éxito desde la API de Steve Saldaña",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    },
+    {
+      "id": "94e1b9da-841f-4b77-a755-95594589ce32",
+      "type": "email",
+      "message": "Hola profesor, notificación de prueba enviada con éxito desde la API de Steve Saldaña",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    },
+    {
+      "id": "3177515f-543b-404b-909a-fbfe7839ef08",
+      "type": "email",
+      "message": "Hola profesor, notificación de prueba enviada con éxito desde la API de Steve Saldaña",
+      "status": "pending",
+      "ticketId": "0ca5af7d-8fcb-41b7-b393-442f727b4028"
+    }
+  ]
+}
