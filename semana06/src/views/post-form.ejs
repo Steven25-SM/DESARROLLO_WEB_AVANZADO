@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= post ? 'Editar Post' : 'Nuevo Post' %></title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container-app">
+    <div class="form-card">
+      <a href="/posts" class="btn-back"><i class="material-icons" style="font-size:16px;">arrow_back</i> Volver a posts</a>
+      <h2><%= post ? 'Editar Post' : 'Nuevo Post' %></h2>
+
+      <form id="postForm" action="<%= post ? '/posts/' + post._id + '/edit' : '/posts' %>" method="POST" novalidate>
+
+        <div class="form-field">
+          <label>Título</label>
+          <input id="titleInput" name="title" type="text"
+                 value="<%= post ? post.title : '' %>"
+                 minlength="5" maxlength="30" required>
+          <div class="field-footer">
+            <span class="error-message" id="err-title"></span>
+            <span class="char-counter" id="count-title">0/30</span>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label>Contenido</label>
+          <textarea id="contentInput" name="content" rows="4" minlength="10" required><%= post ? post.content : '' %></textarea>
+          <div class="field-footer">
+            <span class="error-message" id="err-content"></span>
+            <span class="char-counter" id="count-content">0 (mín. 10)</span>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label>Hashtags (separados por coma)</label>
+          <input name="hashtags" type="text" value="<%= post && post.hashtags ? post.hashtags.join(', ') : '' %>" placeholder="nodejs, mongo, practica">
+        </div>
+
+        <div class="form-field">
+          <label>URL de imagen (opcional)</label>
+          <input id="imageUrlInput" name="imageUrl" type="text" value="<%= post ? (post.imageUrl || '') : '' %>" placeholder="https://...">
+          <span class="error-message" id="err-imageUrl"></span>
+          <div class="image-preview-wrap">
+            <img id="imagePreview" class="image-preview"
+                 src="<%= post && post.imageUrl ? post.imageUrl : '' %>"
+                 style="<%= post && post.imageUrl ? '' : 'display:none;' %>">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label>Autor</label>
+          <select id="userIdInput" name="userId" required>
+            <option value="" <%= !post ? 'selected' : '' %>>Selecciona un usuario</option>
+            <% users.forEach(u => { %>
+              <option value="<%= u._id %>"
+                <%= (post && post.user && String(post.user._id) === String(u._id)) ? 'selected' : '' %>>
+                <%= u.name %> <%= u.lastName %> — <%= u.email %>
+              </option>
+            <% }) %>
+          </select>
+          <span class="error-message" id="err-userId"></span>
+          <a href="/users/new" target="_blank" class="link-small">+ Agregar nuevo usuario</a>
+        </div>
+
+        <button class="btn-primary" type="submit">Guardar</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('postForm');
+
+    const rules = {
+      title:   { el: document.getElementById('titleInput'),   min: 5,  max: 30, label: 'El título' },
+      content: { el: document.getElementById('contentInput'), min: 10, max: null, label: 'El contenido' },
+    };
+
+    function validateTextField(key) {
+      const { el, min, max, label } = rules[key];
+      const value = el.value.trim();
+      let message = '';
+      if (value.length === 0) message = `${label} es obligatorio.`;
+      else if (min && value.length < min) message = `${label} debe tener al menos ${min} caracteres (tiene ${value.length}).`;
+      else if (max && value.length > max) message = `${label} no puede superar los ${max} caracteres (tiene ${value.length}).`;
+      showError(el, `err-${key}`, message);
+      return message === '';
+    }
+
+    function validateImageUrl() {
+      const el = document.getElementById('imageUrlInput');
+      const value = el.value.trim();
+      let message = '';
+      if (value && !/^https?:\/\/.+/i.test(value)) message = 'La URL debe comenzar con http:// o https://';
+      showError(el, 'err-imageUrl', message);
+      return message === '';
+    }
+
+    function validateUser() {
+      const el = document.getElementById('userIdInput');
+      let message = '';
+      if (!el.value) message = 'Debes seleccionar un autor.';
+      showError(el, 'err-userId', message);
+      return message === '';
+    }
+
+    function showError(el, errorId, message) {
+      const errorEl = document.getElementById(errorId);
+      if (message) { el.classList.add('input-error'); errorEl.textContent = message; }
+      else { el.classList.remove('input-error'); errorEl.textContent = ''; }
+    }
+
+    function updateCounter(key) {
+      const { el, min, max } = rules[key];
+      const len = el.value.trim().length;
+      const counterEl = document.getElementById(`count-${key}`);
+      counterEl.textContent = max ? `${len}/${max}` : `${len} (mín. ${min})`;
+      counterEl.style.color = (min && len < min) || (max && len > max) ? 'var(--accent-pink)' : 'var(--text-muted)';
+    }
+
+    Object.keys(rules).forEach(key => {
+      const el = rules[key].el;
+      updateCounter(key);
+      el.addEventListener('input', () => { updateCounter(key); validateTextField(key); });
+    });
+
+    document.getElementById('imageUrlInput').addEventListener('input', () => {
+      validateImageUrl();
+      const url = document.getElementById('imageUrlInput').value.trim();
+      const imagePreview = document.getElementById('imagePreview');
+      if (url) { imagePreview.src = url; imagePreview.style.display = 'block'; }
+      else { imagePreview.style.display = 'none'; }
+    });
+    document.getElementById('imagePreview').addEventListener('error', () => {
+      document.getElementById('imagePreview').style.display = 'none';
+    });
+
+    document.getElementById('userIdInput').addEventListener('change', validateUser);
+
+    form.addEventListener('submit', (e) => {
+      const validTitle = validateTextField('title');
+      const validContent = validateTextField('content');
+      const validImage = validateImageUrl();
+      const validUser = validateUser();
+      if (!(validTitle && validContent && validImage && validUser)) {
+        e.preventDefault();
+        const firstError = form.querySelector('.input-error');
+        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  </script>
+
+  <%- include('partials/navbar', { active: 'posts' }) %>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Media - Home</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container-app">
+    <header class="app-header">
+      <h1>Bienvenido a Social Media 🚀</h1>
+      <p>Conéctate, comparte y explora publicaciones</p>
+    </header>
+
+    <div class="highlight-card">
+      <div class="highlight-icon blue"><i class="material-icons">dynamic_feed</i></div>
+      <div class="highlight-info">
+        <h3>Explora los posts</h3>
+        <span>Mira lo último que publicó la comunidad</span>
+      </div>
+      <a href="/posts" style="color:inherit;display:flex;align-items:center;">
+        <i class="material-icons highlight-chevron">chevron_right</i>
+      </a>
+    </div>
+  </div>
+
+  <%- include('partials/navbar', { active: 'home' }) %>
+</body>
+</html>

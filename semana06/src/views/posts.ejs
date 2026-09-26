@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Media - Posts</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container-app">
+    <header class="app-header">
+      <h1>Tus posts</h1>
+      <div class="badge-count">
+        <span class="dot"></span>
+        <strong><%= posts.length %></strong> publicaciones
+      </div>
+    </header>
+
+    <% if (posts.length === 0) { %>
+      <div class="empty-state">
+        <div class="empty-icon"><i class="material-icons">forum</i></div>
+        <h3>Aún no hay posts</h3>
+        <p>Sé el primero en publicar algo</p>
+        <a href="/posts/new" class="btn-primary" style="text-decoration:none;display:inline-block;">Crear post</a>
+      </div>
+    <% } else { %>
+      <div class="cards-grid">
+        <% const colors = ['blue', 'pink', 'green', 'orange']; %>
+        <% posts.forEach((post, i) => { %>
+          <div class="post-card">
+            <% if (post.imageUrl) { %>
+              <div class="post-thumb" style="background-image: url('<%= post.imageUrl %>');"></div>
+            <% } else { %>
+              <div class="highlight-icon <%= colors[i % colors.length] %>">
+                <i class="material-icons">article</i>
+              </div>
+            <% } %>
+            <div class="highlight-info">
+              <h3><%= post.title %></h3>
+              <div class="author-row">
+                <span class="avatar-initials"><%= post.user ? post.user.name[0] : '?' %></span>
+                <%= post.user ? post.user.name : 'Autor desconocido' %>
+              </div>
+              <p><%= post.content %></p>
+              <% if (post.hashtags && post.hashtags.length) { %>
+                <div>
+                  <% post.hashtags.forEach(tag => { %>
+                    <span class="chip">#<%= tag %></span>
+                  <% }) %>
+                </div>
+              <% } %>
+            </div>
+            <div class="card-actions">
+              <a href="/posts/<%= post._id %>/edit" class="icon-btn edit"><i class="material-icons">edit</i></a>
+              <form action="/posts/<%= post._id %>/delete" method="POST">
+                <button type="submit" class="icon-btn delete"><i class="material-icons">delete</i></button>
+              </form>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+
+  <a href="/posts/new" class="fab"><i class="material-icons">add</i></a>
+  <%- include('partials/navbar', { active: 'posts' }) %>
+</body>
+</html>

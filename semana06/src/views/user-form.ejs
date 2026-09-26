@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuevo Usuario</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container-app">
+    <div class="form-card">
+      <a href="/posts/new" class="btn-back"><i class="material-icons" style="font-size:16px;">arrow_back</i> Volver</a>
+      <h2>Nuevo Usuario</h2>
+      <form action="/users" method="POST">
+        <div class="form-field">
+          <label>Nombre</label>
+          <input name="name" type="text" required placeholder="Steven">
+        </div>
+        <div class="form-field">
+          <label>Apellido</label>
+          <input name="lastName" type="text" required placeholder="Saldaña M.">
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input name="email" type="email" required placeholder="steven@correo.com">
+        </div>
+        <div class="form-field">
+          <label>Edad</label>
+          <input name="age" type="number" min="18" required placeholder="18 o más">
+        </div>
+        <div class="form-field">
+          <label>Teléfono (opcional)</label>
+          <input name="phoneNumber" type="text" placeholder="987654321">
+        </div>
+        <div class="form-field">
+          <label>Contraseña</label>
+          <input name="password" type="password" minlength="8" required placeholder="Mínimo 8 caracteres">
+        </div>
+        <button class="btn-primary" type="submit">Crear usuario</button>
+      </form>
+    </div>
+  </div>
+  <%- include('partials/navbar', { active: 'posts' }) %>
+</body>
+</html>
