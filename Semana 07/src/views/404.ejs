@@ -1,0 +1,74 @@
+<%- include('partials/header') %>
+
+<style>
+    /* Cubre toda la pantalla sin bordes ni márgenes */
+    .error-page-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #d32f2f; /* Rojo puro e intenso */
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        z-index: 99999; /* Por encima del navbar/header */
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .error-container h1 {
+        font-size: 5.5rem;
+        font-weight: 900;
+        margin: 0 0 10px 0;
+        color: #ffffff;
+        letter-spacing: 1px;
+        line-height: 1;
+    }
+    .error-container h4 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin: 0 0 15px 0;
+        color: #ffffff;
+    }
+    .error-container p {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 30px;
+        color: #ffffff;
+    }
+    /* Override a los estilos por defecto de Materialize en botones */
+    .btn-error-back {
+        background-color: #ffffff !important;
+        color: #d32f2f !important;
+        font-weight: 800 !important;
+        height: auto !important;
+        line-height: 1.4 !important;
+        padding: 12px 28px !important;
+        border-radius: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+    .btn-error-back:hover {
+        background-color: #f8f9fa !important;
+        transform: translateY(-2px);
+    }
+</style>
+
+<div class="error-page-wrapper">
+    <div class="error-container">
+        <h1>Error 404</h1>
+        <h4>Página No Encontrada</h4>
+        <p>La ruta solicitada no existe.</p>
+        <a href="/signIn" class="btn btn-error-back">Ir al Inicio</a>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

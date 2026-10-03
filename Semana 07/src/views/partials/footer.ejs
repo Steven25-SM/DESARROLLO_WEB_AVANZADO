@@ -1,0 +1,31 @@
+</div>
+    <!-- Materialize JS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        function logout() {
+            sessionStorage.removeItem('token');
+            window.location.href = '/signIn';
+        }
+
+        // Decodificar payload JWT en cliente
+        function parseJwt (token) {
+            try {
+                const base64Url = token.split('.')[1];
+                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                return JSON.parse(window.atob(base64));
+            } catch (e) {
+                return null;
+            }
+        }
+
+        const token = sessionStorage.getItem('token');
+        if (token) {
+            const payload = parseJwt(token);
+            if (payload && payload.roles && payload.roles.includes('admin')) {
+                const adminNav = document.getElementById('adminNav');
+                if (adminNav) adminNav.style.display = 'inline-block';
+            }
+        }
+    </script>
+</body>
+</html>

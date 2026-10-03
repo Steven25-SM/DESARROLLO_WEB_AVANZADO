@@ -1,0 +1,311 @@
+<%- include('partials/header') %>
+
+<style>
+    .profile-card {
+        background-color: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        margin: 35px auto;
+        max-width: 950px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    
+    /* Header Azul (Datos Personales Estudiante / Usuario) */
+    .profile-header {
+        background-color: #0b62c4;
+        color: #ffffff;
+        padding: 30px 35px;
+        position: relative;
+    }
+    .profile-header-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 25px;
+    }
+    .avatar-circle {
+        width: 110px;
+        height: 110px;
+        background-color: #1976d2;
+        border: 3px solid #ffffff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .avatar-circle i {
+        font-size: 65px;
+        color: #ffffff;
+    }
+    .profile-main-info {
+        flex-grow: 1;
+    }
+    .profile-main-info h4 {
+        margin: 0 0 18px 0;
+        font-size: 1.45rem;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+    }
+    .info-line {
+        margin-bottom: 6px;
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+    .info-line strong {
+        font-weight: 700;
+    }
+    
+    /* Botón Editar Datos */
+    .btn-edit-data {
+        position: absolute;
+        top: 30px;
+        right: 35px;
+        background-color: #084996;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        color: #ffffff;
+        padding: 8px 18px;
+        border-radius: 6px;
+        font-size: 0.88rem;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: background-color 0.2s ease;
+    }
+    .btn-edit-data:hover {
+        background-color: #063875;
+    }
+
+    /* Sección Inferior (Cuerpo Blanco) */
+    .profile-body {
+        padding: 30px 35px;
+        color: #212529;
+    }
+    .section-title {
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin: 0 0 12px 0;
+        color: #2c3e50;
+    }
+    .profile-section {
+        margin-bottom: 25px;
+    }
+    .profile-section:last-child {
+        margin-bottom: 0;
+    }
+    .body-info-line {
+        margin-bottom: 6px;
+        font-size: 0.93rem;
+        color: #333;
+        padding-left: 15px;
+    }
+    .body-info-line strong {
+        font-weight: 700;
+        color: #111;
+    }
+
+    /* Adaptabilidad Móvil */
+    @media (max-width: 650px) {
+        .profile-header-content {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .btn-edit-data {
+            position: static;
+            margin-top: 15px;
+            width: 100%;
+            justify-content: center;
+        }
+        .body-info-line {
+            padding-left: 0;
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="profile-card">
+        <!-- Encabezado Azul de Datos Personales -->
+        <div class="profile-header">
+            <button class="btn-edit-data modal-trigger" href="#modalEdit">
+                <span>Editar Datos</span>
+                <i class="material-icons" style="font-size: 16px;">edit</i>
+            </button>
+
+            <div class="profile-header-content">
+                <div class="avatar-circle">
+                    <i class="material-icons">person</i>
+                </div>
+                
+                <div class="profile-main-info">
+                    <h4>Datos Personales</h4>
+                    
+                    <div class="info-line">
+                        <strong>Nombre:</strong> <span id="fullName">-</span>
+                    </div>
+                    <div class="info-line">
+                        <strong>Edad:</strong> <span id="age">-</span>
+                    </div>
+                    <div class="info-line">
+                        <strong>Fecha de Nacimiento:</strong> <span id="birthdate">-</span>
+                    </div>
+                    <div class="info-line">
+                        <strong>Dirección:</strong> <span id="adress">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cuerpo Blanco -->
+        <div class="profile-body">
+            <!-- Datos de Cuenta / Académicos -->
+            <div class="profile-section">
+                <div class="section-title">Datos de Cuenta</div>
+                <div class="body-info-line">
+                    <strong>Rol / Condición:</strong> <span id="role">-</span>
+                </div>
+                <div class="body-info-line">
+                    <strong>ID Usuario:</strong> <span id="userId">-</span>
+                </div>
+            </div>
+
+            <!-- Contactos -->
+            <div class="profile-section">
+                <div class="section-title">Contactos</div>
+                <div class="body-info-line">
+                    <strong>Teléfono celular:</strong> <span id="phoneNumber">-</span>
+                </div>
+                <div class="body-info-line">
+                    <strong>Correo Personal:</strong> <span id="email">-</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Editar Datos -->
+<div id="modalEdit" class="modal">
+    <div class="modal-content">
+        <h4>Editar Datos Personales</h4>
+        <form id="editProfileForm">
+            <div class="input-field">
+                <input type="text" id="editName" required>
+                <label for="editName" class="active">Nombre</label>
+            </div>
+            <div class="input-field">
+                <input type="text" id="editLastName" required>
+                <label for="editLastName" class="active">Apellido</label>
+            </div>
+            <div class="input-field">
+                <input type="text" id="editPhone" required>
+                <label for="editPhone" class="active">Teléfono</label>
+            </div>
+            <div class="input-field">
+                <input type="text" id="editAdress">
+                <label for="editAdress" class="active">Dirección</label>
+            </div>
+            <button type="submit" class="btn waves-effect waves-light" style="width: 100%; background-color: #0b62c4;">
+                Guardar Cambios
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        // Inicializar modales de Materialize
+        const modals = document.querySelectorAll('.modal');
+        M.Modal.init(modals);
+
+        const token = sessionStorage.getItem('token');
+
+        if (!token || token === "undefined") {
+            M.toast({html: 'No hay un token válido guardado', classes: 'orange'});
+            setTimeout(() => window.location.href = '/signIn', 1500);
+            return;
+        }
+
+        try {
+            // Se corrigió la ruta de /api/users/profile a /api/users/me
+            const res = await fetch('/api/users/me', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+
+            if (!res.ok) {
+                const errorData = await res.json().catch(() => ({}));
+                M.toast({html: `Error (${res.status}): ${errorData.message || 'Sesión expirada'}`, classes: 'red'});
+                setTimeout(() => window.location.href = '/signIn', 2000);
+                return;
+            }
+
+            const user = await res.json();
+
+            // Cargar valores en la tarjeta
+            const fullName = `${user.name || ''} ${user.lastName || ''}`.trim() || 'No especificado';
+            document.getElementById('fullName').innerText = fullName;
+            document.getElementById('age').innerText = user.age !== undefined ? `${user.age} años` : '-';
+            
+            if (user.birthdate) {
+                const date = new Date(user.birthdate);
+                document.getElementById('birthdate').innerText = date.toLocaleDateString('es-ES', { timeZone: 'UTC' });
+            } else {
+                document.getElementById('birthdate').innerText = '-';
+            }
+
+            document.getElementById('adress').innerText = user.adress || 'No especificada';
+            document.getElementById('role').innerText = Array.isArray(user.roles) ? user.roles.join(', ') : (user.role || 'Usuario');
+            document.getElementById('userId').innerText = user._id || user.id || '-';
+            document.getElementById('phoneNumber').innerText = user.phoneNumber || '-';
+            document.getElementById('email').innerText = user.email || '-';
+
+            // Cargar campos en el modal de edición
+            document.getElementById('editName').value = user.name || '';
+            document.getElementById('editLastName').value = user.lastName || '';
+            document.getElementById('editPhone').value = user.phoneNumber || '';
+            document.getElementById('editAdress').value = user.adress || '';
+            M.updateTextFields();
+
+        } catch (err) {
+            console.error("Error en fetch profile:", err);
+            M.toast({html: 'Error de conexión al cargar el perfil', classes: 'red'});
+        }
+    });
+
+    // Enviar edición de perfil
+    document.getElementById('editProfileForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const token = sessionStorage.getItem('token');
+
+        const payload = {
+            name: document.getElementById('editName').value,
+            lastName: document.getElementById('editLastName').value,
+            phoneNumber: document.getElementById('editPhone').value,
+            adress: document.getElementById('editAdress').value
+        };
+
+        try {
+            // Se corrigió la ruta de /api/users/profile a /api/users/me
+            const res = await fetch('/api/users/me', {
+                method: 'PUT',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` 
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (res.ok) {
+                M.toast({html: 'Perfil actualizado con éxito', classes: 'green'});
+                setTimeout(() => location.reload(), 1000);
+            } else {
+                const data = await res.json();
+                M.toast({html: data.message || 'Error al actualizar', classes: 'red'});
+            }
+        } catch (err) {
+            M.toast({html: 'Error de conexión', classes: 'red'});
+        }
+    });
+</script>
+
+<%- include('partials/footer') %>

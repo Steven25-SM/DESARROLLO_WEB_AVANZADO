@@ -1,0 +1,89 @@
+<%- include('partials/header') %>
+<div class="row">
+    <div class="col s12 m8 offset-m2">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Mi Cuenta / Perfil</span>
+                <form id="profileForm">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input type="text" id="name" active required>
+                            <label for="name" class="active">Nombre</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="text" id="lastName" active required>
+                            <label for="lastName" class="active">Apellido</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input type="text" id="phoneNumber" active required>
+                            <label for="phoneNumber" class="active">Teléfono</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="text" id="age" readonly>
+                            <label for="age" class="active">Edad (Calculada)</label>
+                        </div>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="adress" active>
+                        <label for="adress" class="active">Dirección</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="email" id="email" readonly>
+                        <label for="email" class="active">Email</label>
+                    </div>
+                    <button class="btn waves-effect waves-light orange darken-2" type="submit">Actualizar Perfil</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    async function loadProfile() {
+        const token = sessionStorage.getItem('token');
+        if (!token) return window.location.href = '/signIn';
+
+        const res = await fetch('/api/users/me', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.status === 401) return window.location.href = '/signIn';
+
+        const user = await res.json();
+        document.getElementById('name').value = user.name;
+        document.getElementById('lastName').value = user.lastName;
+        document.getElementById('phoneNumber').value = user.phoneNumber;
+        document.getElementById('age').value = `${user.age} años`;
+        document.getElementById('adress').value = user.adress || '';
+        document.getElementById('email').value = user.email;
+        M.updateTextFields();
+    }
+
+    document.getElementById('profileForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const token = sessionStorage.getItem('token');
+        const payload = {
+            name: document.getElementById('name').value,
+            lastName: document.getElementById('lastName').value,
+            phoneNumber: document.getElementById('phoneNumber').value,
+            adress: document.getElementById('adress').value
+        };
+
+        const res = await fetch('/api/users/me', {
+            method: 'PUT',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(payload)
+        });
+        if (res.ok) {
+            M.toast({html: 'Perfil actualizado correctamente', classes: 'green'});
+        } else {
+            M.toast({html: 'Error al actualizar', classes: 'red'});
+        }
+    });
+
+    loadProfile();
+</script>
+<%- include('partials/footer') %>

@@ -1,0 +1,177 @@
+<%- include('partials/header') %>
+
+<style>
+    .signin-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 10px;
+    }
+    .login-card {
+        background: #ffffff;
+        width: 100%;
+        max-width: 390px;
+        padding: 35px 30px;
+        border-radius: 24px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        box-sizing: border-box;
+    }
+    .login-title {
+        color: #2979ff;
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0 0 6px 0;
+    }
+    .register-text {
+        color: #777;
+        font-size: 0.85rem;
+        margin-bottom: 25px;
+    }
+    .register-text a {
+        color: #2979ff;
+        font-weight: 600;
+        text-decoration: none;
+    }
+    /* Contenedor de input corregido */
+    .custom-input-group {
+        position: relative;
+        margin-bottom: 18px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .custom-input-group i {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #757575;
+        font-size: 20px;
+        z-index: 2;
+        pointer-events: none;
+    }
+    .custom-input-group input[type="email"],
+    .custom-input-group input[type="password"] {
+        width: 100% !important;
+        height: 48px !important;
+        padding: 0 18px 0 48px !important;
+        background-color: #f0f2f5 !important;
+        border: none !important;
+        border-radius: 25px !important;
+        box-sizing: border-box !important;
+        font-size: 0.95rem !important;
+        color: #333 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+    }
+    .custom-input-group input::placeholder {
+        color: #9e9e9e;
+    }
+    /* Opciones */
+    .options-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 15px 0 25px 0;
+        font-size: 0.85rem;
+    }
+    .remember-label {
+        display: flex !important;
+        align-items: center !important;
+        color: #666 !important;
+        cursor: pointer;
+        padding-left: 0 !important;
+    }
+    .remember-label input[type="checkbox"] {
+        opacity: 1 !important;
+        position: relative !important;
+        pointer-events: auto !important;
+        margin: 0 8px 0 0 !important;
+        width: 16px !important;
+        height: 16px !important;
+        accent-color: #2979ff;
+        cursor: pointer;
+    }
+    .forgot-pass {
+        color: #2979ff;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    /* Botón */
+    .btn-signin {
+        width: 100%;
+        height: 48px;
+        background-color: #2979ff;
+        color: #ffffff;
+        border: none;
+        border-radius: 25px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(41, 121, 255, 0.3);
+        transition: background-color 0.2s ease;
+    }
+    .btn-signin:hover {
+        background-color: #1565c0;
+    }
+</style>
+
+<div class="signin-container">
+    <div class="login-card">
+        <h1 class="login-title">Sign in</h1>
+        <div class="register-text">
+            Not registered? <a href="/signUp">Click here to register.</a>
+        </div>
+
+        <form id="signInForm">
+            <div class="custom-input-group">
+                <i class="material-icons">person_outline</i>
+                <input type="email" id="email" placeholder="Username / Email" required>
+            </div>
+
+            <div class="custom-input-group">
+                <i class="material-icons">vpn_key</i>
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+
+            <div class="options-row">
+                <label class="remember-label">
+                    <input type="checkbox" id="rememberMe">
+                    <span>Remember Me</span>
+                </label>
+                <a href="#" class="forgot-pass" onclick="M.toast({html: 'Función en desarrollo', classes: 'blue'})">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn-signin">Sign in</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('signInForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        try {
+            const res = await fetch('/api/auth/signIn', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                sessionStorage.setItem('token', data.token);
+                M.toast({html: '¡Inicio de sesión exitoso!', classes: 'green'});
+                setTimeout(() => window.location.href = '/dashboard', 1000);
+            } else {
+                M.toast({html: data.message || 'Credenciales incorrectas', classes: 'red'});
+            }
+        } catch (err) {
+            M.toast({html: 'Error de conexión con el servidor', classes: 'red'});
+        }
+    });
+</script>
+
+<%- include('partials/footer') %>
