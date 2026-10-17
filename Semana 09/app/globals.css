@@ -1,0 +1,8 @@
+@import "tailwindcss";
+:root { color-scheme: dark; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #080619; color: #f5f4f0; font-family: Arial, Helvetica, sans-serif; }
+::selection { background: #fa5d99; color: #160b26; }
+@keyframes floatIn { from { opacity: 0; transform: translateY(12px) } to { opacity: 1; transform: translateY(0) } }
+.fadein { animation: floatIn .45s ease-out both; }
+::-webkit-scrollbar { width: 9px; } ::-webkit-scrollbar-track { background: #080619; } ::-webkit-scrollbar-thumb { background: #4b2a67; border-radius: 20px; }
