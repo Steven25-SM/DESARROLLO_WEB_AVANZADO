@@ -1,0 +1,15 @@
+{
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/authors/[id]/books/route": "app/api/authors/[id]/books/route.js",
+  "/api/authors/[id]/route": "app/api/authors/[id]/route.js",
+  "/api/authors/[id]/stats/route": "app/api/authors/[id]/stats/route.js",
+  "/api/authors/route": "app/api/authors/route.js",
+  "/api/books/[id]/route": "app/api/books/[id]/route.js",
+  "/api/books/route": "app/api/books/route.js",
+  "/api/books/search/route": "app/api/books/search/route.js",
+  "/authors/[id]/page": "app/authors/[id]/page.js",
+  "/books/page": "app/books/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js"
+}

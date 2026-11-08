@@ -1,0 +1,53 @@
+[
+  {
+    "route": "/authors/[id]",
+    "firstLoadUncompressedJsBytes": 481070,
+    "firstLoadChunkPaths": [
+      ".next\\static\\chunks\\3zw8p-96h-slp.js",
+      ".next\\static\\chunks\\294_n7f7hbxb2.js",
+      ".next\\static\\chunks\\310vm2bl3xxpt.js",
+      ".next\\static\\chunks\\1wnov70f88xjy.js",
+      ".next\\static\\chunks\\23e6jep2anmtk.js",
+      ".next\\static\\chunks\\0c1ad7rcpjghx.js",
+      ".next\\static\\chunks\\turbopack-2u1d16houkiyo.js"
+    ]
+  },
+  {
+    "route": "/",
+    "firstLoadUncompressedJsBytes": 479702,
+    "firstLoadChunkPaths": [
+      ".next\\static\\chunks\\3zw8p-96h-slp.js",
+      ".next\\static\\chunks\\3_jzerfo7jj91.js",
+      ".next\\static\\chunks\\310vm2bl3xxpt.js",
+      ".next\\static\\chunks\\1wnov70f88xjy.js",
+      ".next\\static\\chunks\\23e6jep2anmtk.js",
+      ".next\\static\\chunks\\0c1ad7rcpjghx.js",
+      ".next\\static\\chunks\\turbopack-2u1d16houkiyo.js"
+    ]
+  },
+  {
+    "route": "/books",
+    "firstLoadUncompressedJsBytes": 478308,
+    "firstLoadChunkPaths": [
+      ".next\\static\\chunks\\3zw8p-96h-slp.js",
+      ".next\\static\\chunks\\1yqm2svb7qm5s.js",
+      ".next\\static\\chunks\\310vm2bl3xxpt.js",
+      ".next\\static\\chunks\\1wnov70f88xjy.js",
+      ".next\\static\\chunks\\23e6jep2anmtk.js",
+      ".next\\static\\chunks\\0c1ad7rcpjghx.js",
+      ".next\\static\\chunks\\turbopack-2u1d16houkiyo.js"
+    ]
+  },
+  {
+    "route": "/_not-found",
+    "firstLoadUncompressedJsBytes": 466207,
+    "firstLoadChunkPaths": [
+      ".next\\static\\chunks\\3zw8p-96h-slp.js",
+      ".next\\static\\chunks\\310vm2bl3xxpt.js",
+      ".next\\static\\chunks\\1wnov70f88xjy.js",
+      ".next\\static\\chunks\\23e6jep2anmtk.js",
+      ".next\\static\\chunks\\0c1ad7rcpjghx.js",
+      ".next\\static\\chunks\\turbopack-2u1d16houkiyo.js"
+    ]
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/books/layout,_N_T_/books/page,_N_T_/books"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/books/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 64,
+    "slots": {
+      "children": {
+        "hints": 96,
+        "slots": {
+          "children": {
+            "hints": 160,
+            "slots": null
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/b8f4df46377836a91beee12c9108543328b48a70201e11932b911132e37b136a/$/books",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/books/page"
+    },
+    "isFallback": false
+  }
+}

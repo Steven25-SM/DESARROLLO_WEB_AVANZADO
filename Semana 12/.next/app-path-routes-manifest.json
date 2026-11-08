@@ -1,0 +1,15 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/authors/[id]/books/route": "/api/authors/[id]/books",
+  "/api/authors/[id]/route": "/api/authors/[id]",
+  "/api/authors/[id]/stats/route": "/api/authors/[id]/stats",
+  "/api/authors/route": "/api/authors",
+  "/api/books/[id]/route": "/api/books/[id]",
+  "/api/books/route": "/api/books",
+  "/api/books/search/route": "/api/books/search",
+  "/authors/[id]/page": "/authors/[id]",
+  "/books/page": "/books",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/"
+}

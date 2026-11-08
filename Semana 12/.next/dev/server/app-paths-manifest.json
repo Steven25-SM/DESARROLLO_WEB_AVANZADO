@@ -1,0 +1,7 @@
+{
+  "/api/authors/route": "app/api/authors/route.js",
+  "/api/books/route": "app/api/books/route.js",
+  "/api/books/search/route": "app/api/books/search/route.js",
+  "/books/page": "app/books/page.js",
+  "/page": "app/page.js"
+}
